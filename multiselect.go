@@ -31,6 +31,7 @@ type MultiSelect struct {
 	Filter        func(filter string, value string, index int) bool
 	filter        string
 	selectedIndex int
+	Checked       map[int]bool
 	checked       map[int]bool
 	showingHelp   bool
 }
@@ -220,7 +221,8 @@ func (m *MultiSelect) filterOptions(config *PromptConfig) []core.OptionAnswer {
 
 func (m *MultiSelect) Prompt(config *PromptConfig) (interface{}, error) {
 	// compute the default state
-	m.checked = make(map[int]bool)
+	//m.checked = make(map[int]bool)
+	m.checked = m.Checked
 	// if there is a default
 	if m.Default != nil {
 		// if the default is string values
